@@ -1,6 +1,7 @@
 import Home from './components/home/home.vue'
 import Info from './components/info/info.vue'
 import Edit from './components/edit/edit.vue'
+import Md from './components/edit/md.vue'
 
 const routers = [
   {
@@ -21,6 +22,11 @@ const routers = [
     path: '/edit/9527',
     name: 'edit',
     component: Edit
+  },
+  {
+    path: '/md/9527',
+    name: 'md',
+    component: Md
   }
 ]
 export default routers
