@@ -115,12 +115,7 @@
     },
     methods: {
       getGoodsList() {
-        this.$http.get('http://localhost:8080/static/ceshi.json').then((res) => {
-          //用axios的方法引入地址
-          this.res = res;
-          //赋值
-          console.log(res);
-        })
+        console.log('getGoodsList method');
       },
       back(obj) {
         console.log('back method param:' + JSON.stringify(obj));

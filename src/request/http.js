@@ -5,7 +5,7 @@ const TIME_OUT_MS = 60 * 1000
 
 const REQUEST_URL = process.env.NODE_ENV === 'development'
   // 测试接口地址
-  ? 'http://localhost:8080'
+  ? 'http://localhost:6969'
   // 线上接口地址
   : 'http://www.jdbiji.com';
 
