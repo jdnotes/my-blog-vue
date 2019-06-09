@@ -32,6 +32,8 @@ vue-api统一管理
 https://www.jianshu.com/p/72d911b6d61d 
 https://segmentfault.com/a/1190000015027724
 
+vue-pager分页
+https://www.cnblogs.com/yuqing6/p/7061647.html
 
 html 布局
 https://www.cnblogs.com/fxwl/p/5961372.html

@@ -18,15 +18,7 @@
             <p>{{item.articleSection}}</p>
           </li>
         </div>
-        <div class="pagelist">
-          <a href="javascript: void(0)" @click="page(0)">上一页</a>
-          <a href="javascript: void(0)" @click="page(1)" class="curPage">1</a>&nbsp;&nbsp;
-          <a href="javascript: void(0)" @click="page(2)">2</a>&nbsp;&nbsp;
-          <a href="javascript: void(0)" @click="page(3)">3</a>&nbsp;&nbsp;
-          <a href="javascript: void(0)" @click="page(4)">4</a>&nbsp;&nbsp;
-          <a href="javascript: void(0)" @click="page(5)">5</a>&nbsp;&nbsp;
-          <a href="javascript: void(0)" @click="page(0)">下一页</a>
-        </div>
+        <page :totalRecords="total" :currentPage='currentPage' @pageChange="pageChange"></page>
       </main>
     </article>
     <foot></foot>
@@ -42,10 +34,12 @@
   import Concern from "../section/concern";
   import Foot from "../section/foot";
   import Tags from "../section/tags";
+  import Page from "../section/page";
 
   export default {
     name: 'myHome',
     components: {
+      Page,
       Tags,
       Foot,
       Concern,
@@ -56,8 +50,10 @@
     },
     data() {
       return {
-        currentPage: '1',
-        pageRows: '10',
+        currentPage: 1,
+        pageRows: 10,
+        total: 0,
+        keywords: '',
         tags: '',
         articles: []
       }
@@ -70,13 +66,14 @@
         //console.log('getGoodsList method');
         this.http.post(this.ports.article.search, {
           currentPage: this.currentPage,
-          tags: '1001'
+          tags: this.tags
         }, res => {
           if (res.success) {
             //console.log(JSON.stringify(res.data.results));
             let datas = res.data.results;
-            this.currentPage = datas.currentPage;
             this.articles = datas.records;
+            this.currentPage = datas.currentPage;
+            this.total = datas.totalRecords;
           } else {
             this.articles = [];
           }
@@ -88,16 +85,17 @@
         console.log('back method id:' + id);
         this.$router.push({path: '/info/' + id});
       },
-      page(curPage) {
-        console.log('curPage:' + curPage);
-        this.http.post(this.ports.article.list, {
-          currentPage: '2',
-          tag: '1001'
+      pageChange(curPage) {
+        this.http.post(this.ports.article.search, {
+          currentPage: curPage,
+          tag: this.tags
         }, res => {
           if (res.success) {
-            // 返回正确的处理
+            let datas = res.data.results;
+            this.currentPage = datas.currentPage;
+            this.articles = datas.records;
           } else {
-            // 返回错误的处理
+            this.articles = [];
           }
         })
       },
