@@ -10,6 +10,7 @@ export default {
     recommends: '/blog/article/recommends'
   },
   tag: {
-    cloud: '/blog/tag/cloud'
+    cloud: '/blog/tag/cloud',
+    secondTags: '/blog/tag/secondTags'
   }
 }

@@ -18,7 +18,7 @@
         <a href="/">Dubbo</a>
         <a href="/">IDEA</a>
         <a href="/">git</a>
-        <a href="/">example</a>
+        <a href="/">实战</a>
       </ul>
     </div>
   </div>
