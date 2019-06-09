@@ -5,7 +5,7 @@ export default {
     logout: '/blog/user/loginOut' // // 退出
   },
   article: {
-    list: '/blog/article/list',
     search: '/blog/article/search',
+    list: '/blog/article/list'
   }
 }

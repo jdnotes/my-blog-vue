@@ -12,10 +12,10 @@
       <main class="r_box">
         <div v-for="item in articles">
           <li>
-            <i v-if="item.imgUrl != ''"><a href="javascript: void(0)" @click="back(item)">
-              <img :src="item.imgUrl"></a></i>
+            <i v-if="item.logo != ''"><a href="javascript: void(0)" @click="back(item)">
+              <img :src="item.logo"></a></i>
             <h3><a href="javascript: void(0)" @click="back(item)">{{item.title}}</a></h3>
-            <p>{{item.shortText}}</p>
+            <p>{{item.articleSection}}</p>
           </li>
         </div>
         <div class="pagelist">
@@ -56,58 +56,10 @@
     },
     data() {
       return {
-        articles: [{
-          'id': '1001',
-          'title': '你是什么人便会遇上什么人',
-          'shortText': '有时就为了一句狠话，像心头一口毒钉，永远麻痺着亲密感情交流。恶言，真要慎出，平日多誠心爱语，乃最简易之佈施。',
-          'imgUrl': ''
-        }, {
-          'id': '1002',
-          'title': '爱情没有永远，地老天荒也走不完',
-          'shortText': '也许，爱情没有永远，地老天荒也走不完，生命终结的末端，苦短情长。站在岁月的边端，那些美丽的定格，心伤的绝恋，都被四季的掩埋，一去不返。徒剩下这荒芜的花好月圆，一路相随，流离天涯背负了谁的思念？',
-          'imgUrl': 'https://dpic.tiankong.com/tj/e7/QJ6154513335.jpg?x-oss-process=style/shows'
-        }, {
-          'id': '1003',
-          'title': '擦肩而过',
-          'shortText': '《擦肩而过》文/清河鱼 编绘/天朝羽打开一扇窗，我不曾把你想得平常。看季节一一过往。你停留的那个地方，是否依然花儿开放？在夜里守靠着梦中的，想那仿佛前世铭刻进心肠的',
-          'imgUrl': 'https://dpic.tiankong.com/82/9f/QJ6333551457.jpg?x-oss-process=style/670ws'
-        }, {
-          'id': '1004',
-          'title': '擦肩而过',
-          'shortText': '《擦肩而过》文/清河鱼 编绘/天朝羽打开一扇窗，我不曾把你想得平常。看季节一一过往。你停留的那个地方，是否依然花儿开放？在夜里守靠着梦中的，想那仿佛前世铭刻进心肠的',
-          'imgUrl': 'https://dpic.tiankong.com/82/9f/QJ6333551457.jpg?x-oss-process=style/670ws'
-        }, {
-          'id': '1005',
-          'title': '擦肩而过',
-          'shortText': '《擦肩而过》文/清河鱼 编绘/天朝羽打开一扇窗，我不曾把你想得平常。看季节一一过往。你停留的那个地方，是否依然花儿开放？在夜里守靠着梦中的，想那仿佛前世铭刻进心肠的',
-          'imgUrl': 'https://dpic.tiankong.com/82/9f/QJ6333551457.jpg?x-oss-process=style/670ws'
-        }, {
-          'id': '1006',
-          'title': '擦肩而过',
-          'shortText': '《擦肩而过》文/清河鱼 编绘/天朝羽打开一扇窗，我不曾把你想得平常。看季节一一过往。你停留的那个地方，是否依然花儿开放？在夜里守靠着梦中的，想那仿佛前世铭刻进心肠的',
-          'imgUrl': 'https://dpic.tiankong.com/82/9f/QJ6333551457.jpg?x-oss-process=style/670ws'
-        }, {
-          'id': '1007',
-          'title': '擦肩而过',
-          'shortText': '《擦肩而过》文/清河鱼 编绘/天朝羽打开一扇窗，我不曾把你想得平常。看季节一一过往。你停留的那个地方，是否依然花儿开放？在夜里守靠着梦中的，想那仿佛前世铭刻进心肠的',
-          'imgUrl': 'https://dpic.tiankong.com/82/9f/QJ6333551457.jpg?x-oss-process=style/670ws'
-        }, {
-          'id': '1008',
-          'title': '擦肩而过',
-          'shortText': '《擦肩而过》文/清河鱼 编绘/天朝羽打开一扇窗，我不曾把你想得平常。看季节一一过往。你停留的那个地方，是否依然花儿开放？在夜里守靠着梦中的，想那仿佛前世铭刻进心肠的',
-          'imgUrl': 'https://dpic.tiankong.com/82/9f/QJ6333551457.jpg?x-oss-process=style/670ws'
-        }, {
-          'id': '1009',
-          'title': '擦肩而过',
-          'shortText': '《擦肩而过》文/清河鱼 编绘/天朝羽打开一扇窗，我不曾把你想得平常。看季节一一过往。你停留的那个地方，是否依然花儿开放？在夜里守靠着梦中的，想那仿佛前世铭刻进心肠的',
-          'imgUrl': 'https://dpic.tiankong.com/82/9f/QJ6333551457.jpg?x-oss-process=style/670ws'
-        }, {
-          'id': '1010',
-          'title': '擦肩而过',
-          'shortText': '《擦肩而过》文/清河鱼 编绘/天朝羽打开一扇窗，我不曾把你想得平常。看季节一一过往。你停留的那个地方，是否依然花儿开放？在夜里守靠着梦中的，想那仿佛前世铭刻进心肠的',
-          'imgUrl': 'https://dpic.tiankong.com/82/9f/QJ6333551457.jpg?x-oss-process=style/670ws'
-        }
-        ]
+        currentPage: '1',
+        pageRows: '10',
+        tags: '',
+        articles: []
       }
     },
     mounted() {
@@ -115,7 +67,20 @@
     },
     methods: {
       getGoodsList() {
-        console.log('getGoodsList method');
+        //console.log('getGoodsList method');
+        this.http.post(this.ports.article.search, {
+          currentPage: this.currentPage,
+          tags: '1001'
+        }, res => {
+          if (res.success) {
+            //console.log(JSON.stringify(res.data.results));
+            let datas = res.data.results;
+            this.currentPage = datas.currentPage;
+            this.articles = datas.records;
+          } else {
+            this.articles = [];
+          }
+        })
       },
       back(obj) {
         console.log('back method param:' + JSON.stringify(obj));

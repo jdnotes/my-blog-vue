@@ -24,12 +24,12 @@ function handleResults(response) {
       results: []
     }
   }
-  if (remoteResponse.success) {
+  if (remoteResponse.code == 200) {
     result.data.results = remoteResponse.data
     result.data.total = remoteResponse.total
     result.success = true
   }
-  if (!remoteResponse.success) {
+  if (remoteResponse.code != 200) {
     let code = remoteResponse.errorCode
     if (code === 400) {
       console.log('传参错误')
