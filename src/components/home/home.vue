@@ -18,7 +18,8 @@
             <p>{{item.articleSection}}</p>
           </li>
         </div>
-        <page :totalRecords="total" :currentPage='currentPage' @pageChange="pageChange"></page>
+        <page :totalRecords="total" :currentPage='currentPage' @pageChange="pageChange"
+              v-show="pageShow"></page>
       </main>
     </article>
     <foot></foot>
@@ -53,6 +54,7 @@
         currentPage: 1,
         pageRows: 10,
         total: 0,
+        pageShow: false,
         keywords: '',
         tags: '',
         articles: []
@@ -74,6 +76,9 @@
             this.articles = datas.records;
             this.currentPage = datas.currentPage;
             this.total = datas.totalRecords;
+            if (this.total > 0) {
+              this.pageShow = true;
+            }
           } else {
             this.articles = [];
           }
@@ -91,8 +96,12 @@
         }, res => {
           if (res.success) {
             let datas = res.data.results;
-            this.currentPage = datas.currentPage;
             this.articles = datas.records;
+            this.currentPage = datas.currentPage;
+            this.total = datas.totalRecords;
+            if (this.total > 0) {
+              this.pageShow = true;
+            }
           } else {
             this.articles = [];
           }
