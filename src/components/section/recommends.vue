@@ -33,7 +33,7 @@
       },
       goInfo(obj) {
         let id = obj.id;
-        this.$router.push({path: '/info/' + id});
+        this.$router.push({path:'/info/' + id});
       }
     }
   }

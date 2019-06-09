@@ -17,6 +17,7 @@ https://www.jianshu.com/p/0229e3508ea6
 
 vue页面跳转
 http://www.cnblogs.com/wisewrong/p/6277262.html  
+https://blog.csdn.net/qq_35989226/article/details/84618689
 
 vue-markdown
 参考 https://blog.csdn.net/wn1245343496/article/details/82147850

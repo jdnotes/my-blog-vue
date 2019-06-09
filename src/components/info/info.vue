@@ -14,12 +14,10 @@
           <div class="newsview">
             <h3 class="news_title">{{details.title}}</h3>
             <div class="bloginfo">
-              <ul>
-                <li class="article_type">{{details.articleTypeText}}</li>
-                <li class="author">作者: {{details.author}}</li>
-                <li class="timer">时间：{{details.createDate}}</li>
-                <li class="view">{{details.readNum}} 人已阅读</li>
-              </ul>
+              <li class="article_type">{{details.articleTypeText}}</li>
+              <li class="author">作者: {{details.author}}</li>
+              <li class="timer">时间：{{details.createDate}}</li>
+              <li class="view">{{details.readNum}} 人已阅读</li>
             </div>
             <div class="tags">
               <span v-for="tag in details.tags">
@@ -140,4 +138,5 @@
   .ps_about {
     color: #C0C0C0;
   }
+
 </style>
