@@ -14,13 +14,13 @@
         <ul id="starlist">
           <li><a href="/">首页</a></li>
           <li>
-            <router-link :to="{path:'/info'}">生活</router-link>
+            <router-link :to="{path:'/home'}">生活</router-link>
           </li>
           <li>
-            <router-link :to="{path:'/info'}">留言</router-link>
+            <router-link :to="{path:'/home'}">留言</router-link>
           </li>
           <li>
-            <router-link :to="{path:'/info'}">关于我</router-link>
+            <router-link :to="{path:'/home'}">关于我</router-link>
           </li>
         </ul>
       </nav>
@@ -41,7 +41,6 @@
       search(e) {
         let keyword = this.keywords;
         if (!keyword) {
-          console.log('search is null');
           return;
         } else {
           //子组件调用父组件方法

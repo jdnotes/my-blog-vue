@@ -1,4 +1,5 @@
 import Home from './components/home/home.vue'
+import List from './components/list/list.vue'
 import Info from './components/info/info.vue'
 import Edit from './components/edit/edit.vue'
 import Md from './components/edit/md.vue'
@@ -12,6 +13,11 @@ const routers = [
     path: '/home',
     name: 'home',
     component: Home
+  },
+  {
+    path: '/list',
+    name: 'list',
+    component: List
   },
   {
     path: '/info/:id',

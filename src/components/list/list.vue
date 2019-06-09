@@ -65,16 +65,15 @@
     },
     methods: {
       getInitList() {
-        let param = this.$route.params;
+        let param= this.$route.params;
         this.keywords = param.keywords;
         this.tags = this.$route.params.tags;
         this.http.post(this.ports.article.search, {
-          currentPage: this.currentPage,
+          currentPage: 1,
           tags: this.tags,
           keywords: this.keywords
         }, res => {
           if (res.success) {
-            //console.log(JSON.stringify(res.data.results));
             let datas = res.data.results;
             this.articles = datas.records;
             this.currentPage = datas.currentPage;
@@ -88,7 +87,6 @@
         })
       },
       goInfo(obj) {
-        //console.log('goInfo method param:' + JSON.stringify(obj));
         let id = obj.id;
         this.$router.push({path: '/info/' + id});
       },
@@ -112,8 +110,8 @@
         })
       },
       search(keyword) {
-        console.log("home search:" + keyword);
-        this.$router.push({name: 'list', params: {tags: '', currentPage: 1, keywords: keyword}})
+        console.log("list search:" + keyword);
+        this.$router.push({name: 'home', params: {tags: '', currentPage: 1, keywords: keyword}})
       }
     }
   }

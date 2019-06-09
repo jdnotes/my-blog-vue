@@ -1,7 +1,7 @@
 <template>
   <div id="concern">
     <div class="guanzhu">
-      <h2>关注我 么么哒</h2>
+      <h2>关注Me</h2>
       <ul>
         <img src="../../assets/images/wx.jpg">
       </ul>

@@ -3,7 +3,7 @@
     <div class="tuijian">
       <h2>最新推荐</h2>
       <ul v-for="item in recommends">
-        <li><a href="javascript: void(0)" @click="back(item)"> {{ item.title }}</a></li>
+        <li><a href="javascript: void(0)" @click="goInfo(item)"> {{ item.title }}</a></li>
       </ul>
     </div>
   </div>
@@ -14,10 +14,26 @@
     name: 'recommend',
     data() {
       return {
-        recommends: [
-          {'id': '1001', 'title': '你是什么人便会遇上什么人'},
-          {'id': '1001', 'title': '个人博客模板'}
-        ]
+        recommends: []
+      }
+    },
+    mounted() {
+      this.getInitList()
+    },
+    methods: {
+      getInitList() {
+        this.http.post(this.ports.article.recommends, {}, res => {
+          if (res.success) {
+            let datas = res.data.results;
+            this.recommends = datas;
+          } else {
+            this.recommends = [];
+          }
+        })
+      },
+      goInfo(obj) {
+        let id = obj.id;
+        this.$router.push({path: '/info/' + id});
       }
     }
   }

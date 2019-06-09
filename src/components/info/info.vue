@@ -39,12 +39,14 @@
             </div>
           </div>
           <div class="share">
-            <p class="diggit"><a href="JavaScript:void(0);"> 赞一个！ </a>(<b id="diggnum">13</b>)</p>
+            <p class="diggit"><a href="JavaScript:void(0);"> 赞一个！ </a>(<b id="diggnum">{{details.likeNum}}</b>)</p>
           </div>
+          <!--
           <div class="nextinfo">
             <p>上一篇：<a href="/info/1005">如何坚持自己的原则</a></p>
             <p>下一篇：<a href="/home">返回列表</a></p>
           </div>
+          -->
           <div class="news_pl">
             <h2>文章评论</h2>
             <!--
@@ -100,10 +102,10 @@
       }
     },
     mounted() {
-      this.getGoodsList();
+      this.getInitList();
     },
     methods: {
-      getGoodsList() {
+      getInitList() {
         //console.log("接受的参数:" + this.$route.params.id);
         let id = this.$route.params.id;
         this.http.post(this.ports.article.details, {

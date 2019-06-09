@@ -3,7 +3,7 @@
     <div class="fenlei">
       <h2>文章分类</h2>
       <ul v-for="item in classifies">
-        <li><a href="javascript: void(0)" @click="back(item)"> {{ item.tagName }} ({{item.num}})</a></li>
+        <li><a href="javascript: void(0)" @click="goHome(item)"> {{ item.tagName }} ({{item.num}})</a></li>
       </ul>
     </div>
   </div>
@@ -31,6 +31,10 @@
             this.classifies = [];
           }
         })
+      },
+      goHome(obj) {
+        let tags = obj.code;
+        this.$router.push({name: 'list', params: {tags: tags, currentPage: 1, keywords: ''}})
       }
     }
   }
