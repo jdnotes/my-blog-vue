@@ -36,6 +36,9 @@ https://segmentfault.com/a/1190000015027724
 vue-pager分页
 https://www.cnblogs.com/yuqing6/p/7061647.html
 
+vue-刷新当前页面或者跳转页面时候刷新
+https://blog.csdn.net/yangxiaodong88/article/details/81387672
+
 html 布局
 https://www.cnblogs.com/fxwl/p/5961372.html
 https://www.cnblogs.com/-sayaa/p/7403743.html

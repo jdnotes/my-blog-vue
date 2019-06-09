@@ -12,6 +12,7 @@
 <script>
   export default {
     name: 'recommend',
+    inject: ['reload'],
     data() {
       return {
         recommends: []
@@ -33,6 +34,7 @@
       },
       goInfo(obj) {
         let id = obj.id;
+        this.reload();
         this.$router.push({path:'/info/' + id});
       }
     }
