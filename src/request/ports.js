@@ -6,6 +6,7 @@ export default {
   },
   article: {
     search: '/blog/article/search',
-    list: '/blog/article/list'
+    details: '/blog/article/details',
+    recommends: '/blog/article/recommends'
   }
 }

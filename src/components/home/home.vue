@@ -12,9 +12,9 @@
       <main class="r_box">
         <div v-for="item in articles">
           <li>
-            <i v-if="item.logo != ''"><a href="javascript: void(0)" @click="back(item)">
+            <i v-if="item.logo != ''"><a href="javascript: void(0)" @click="goInfo(item)">
               <img :src="item.logo"></a></i>
-            <h3><a href="javascript: void(0)" @click="back(item)">{{item.title}}</a></h3>
+            <h3><a href="javascript: void(0)" @click="goInfo(item)">{{item.title}}</a></h3>
             <p>{{item.articleSection}}</p>
           </li>
         </div>
@@ -79,10 +79,9 @@
           }
         })
       },
-      back(obj) {
-        console.log('back method param:' + JSON.stringify(obj));
-        var id = obj.id;
-        console.log('back method id:' + id);
+      goInfo(obj) {
+        //console.log('goInfo method param:' + JSON.stringify(obj));
+        let id = obj.id;
         this.$router.push({path: '/info/' + id});
       },
       pageChange(curPage) {
