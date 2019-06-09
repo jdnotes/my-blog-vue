@@ -59,10 +59,10 @@
       }
     },
     mounted() {
-      this.getGoodsList()
+      this.getInitList()
     },
     methods: {
-      getGoodsList() {
+      getInitList() {
         //console.log('getGoodsList method');
         this.http.post(this.ports.article.search, {
           currentPage: this.currentPage,

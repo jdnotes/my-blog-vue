@@ -3,7 +3,7 @@
     <div class="fenlei">
       <h2>文章分类</h2>
       <ul v-for="item in classifies">
-        <li><a href="javascript: void(0)" @click="back(item)"> {{ item.name }} ({{item.num}})</a></li>
+        <li><a href="javascript: void(0)" @click="back(item)"> {{ item.tagName }} ({{item.num}})</a></li>
       </ul>
     </div>
   </div>
@@ -14,11 +14,23 @@
     name: 'classify',
     data() {
       return {
-        classifies: [
-          {'id': 1001, 'name': 'JavaSE', 'num': '16'},
-          {'id': 1002, 'name': 'Spring', 'num': '21'},
-          {'id': 1003, 'name': 'JVM', 'num': '34'}
-        ]
+        classifies: []
+      }
+    },
+    mounted() {
+      this.getInitList()
+    },
+    methods: {
+      getInitList() {
+        //console.log('classify init method');
+        this.http.post(this.ports.tag.cloud, {}, res => {
+          if (res.success) {
+            let datas = res.data.results;
+            this.classifies = datas;
+          } else {
+            this.classifies = [];
+          }
+        })
       }
     }
   }

@@ -8,5 +8,8 @@ export default {
     search: '/blog/article/search',
     details: '/blog/article/details',
     recommends: '/blog/article/recommends'
+  },
+  tag: {
+    cloud: '/blog/tag/cloud'
   }
 }
