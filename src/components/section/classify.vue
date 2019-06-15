@@ -23,7 +23,7 @@
     methods: {
       getInitList() {
         //console.log('classify init method');
-        this.http.post(this.ports.tag.cloud, {}, res => {
+        this.http.post(this.ports.tag.tags, {}, res => {
           if (res.success) {
             let datas = res.data.results;
             this.classifies = datas;

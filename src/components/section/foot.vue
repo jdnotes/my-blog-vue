@@ -1,7 +1,7 @@
 <template>
   <div id="foot">
     <footer>
-      <p><a href="/" target="_blank">个人博客</a> <a href="/">ICP备号</a></p>
+      <p><a href="/" target="_blank">打造个人博客</a> <a href="/">简单笔记</a></p>
     </footer>
     <a href="#" class="cd-top">Top</a>
   </div>

@@ -3,6 +3,7 @@ import axios from 'axios'
 // 默认请求超时时间
 const TIME_OUT_MS = 60 * 1000
 
+//192.168.1.200
 const REQUEST_URL = process.env.NODE_ENV === 'development'
   // 测试接口地址
   ? 'http://localhost:6969'

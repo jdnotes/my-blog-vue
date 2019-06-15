@@ -137,7 +137,7 @@
         })
       },
       search(keyword) {
-        console.log("home search:" + keyword);
+        //console.log("home search:" + keyword);
         this.$router.push({name: 'list', params: {tags: '', currentPage: 1, keywords: keyword}})
       }
     }

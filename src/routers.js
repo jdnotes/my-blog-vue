@@ -1,7 +1,6 @@
 import Home from './components/home/home.vue'
 import List from './components/list/list.vue'
 import Info from './components/info/info.vue'
-import Edit from './components/edit/edit.vue'
 import Md from './components/edit/md.vue'
 
 const routers = [
@@ -25,12 +24,7 @@ const routers = [
     component: Info
   },
   {
-    path: '/edit/9527',
-    name: 'edit',
-    component: Edit
-  },
-  {
-    path: '/md/9527',
+    path: '/md/editor',
     name: 'md',
     component: Md
   }

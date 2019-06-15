@@ -9,8 +9,12 @@ export default {
     details: '/blog/article/details',
     recommends: '/blog/article/recommends'
   },
+  articleBack: {
+    save: '/blog/articleBack/save',
+    get:'/blog/articleBack/getByCode'
+  },
   tag: {
     cloud: '/blog/tag/cloud',
-    secondTags: '/blog/tag/secondTags'
+    tags: '/blog/tag/tags'
   }
 }

@@ -1,29 +1,50 @@
 <template>
   <div id="container">
     <div id="header">
-      <div class="">
-        标题:<input v-model="title" placeholder="请输入标题">
+      <div>
+        <strong>标题:</strong><input v-model="title" placeholder="请输入标题">
         <br>
-        logo:<input v-model="logo" placeholder="请输入logo地址">
+        <strong>二级标题:</strong><input v-model="secondTitle" placeholder="请输入二级标题">
+        <br>
+        <strong>logo:</strong><input v-model="logo" placeholder="请输入logo地址">
       </div>
       <div>
-        一级标签:<span v-for="firstTag in firstTags">
-          <input type="radio" :value="firstTag.code" v-model="firstTagValue">
+        <strong>标签:</strong><span v-for="firstTag in tags">
+          <input type="radio" :value="firstTag.code" v-model="tagValue">
           <label>{{firstTag.tagName}}</label>
         </span>
       </div>
       <div>
-        标签列表:<span v-for="firstTag in firstTags">
+        <strong>标签列表:</strong><span v-for="firstTag in tags">
           <input type="checkbox" :value="firstTag.code" v-model="tagsValue">
           <label>{{firstTag.tagName}}</label>
         </span>
       </div>
       <div>
-        二级标签:<span v-for="secondTag in secondTags">
-          <input type="checkbox" :value="secondTag.code" v-model="secondTagValue">
-          <label>{{secondTag.tagName}}</label>
+        <strong>类型:</strong><span v-for="at in articleTypeArr">
+          <input type="radio" :value="at.id" v-model="articleTypeValue">
+          <label>{{at.name}}</label>
         </span>
       </div>
+      <div>
+        <strong>级别:</strong><span v-for="at in levelArr">
+          <input type="radio" :value="at.id" v-model="level">
+          <label>{{at.name}}</label>
+        </span>
+      </div>
+      <div>
+        <strong>段落:</strong>
+        <textarea class="remark" placeholder="请输入段落" v-model="articleSection"/>
+      </div>
+      <div>
+        <strong>备注:</strong>
+        <textarea class="remark" placeholder="请输入备注" maxlength="500" @input="descInput" v-model="remark"/>
+        <span class="numberV">{{textVal}}/500</span>
+        <br>
+      </div>
+    </div>
+    <div>
+      <strong>word:</strong><input v-model="word" placeholder="请输入">
     </div>
     <div id="main">
       <div class="edit-main-right">
@@ -40,13 +61,24 @@
     data() {
       return {
         title: "",
+        word: "",
+        secondTitle: "",
         logo: "",
-        mdText: "# 我的世界",
-        firstTags: [],
-        secondTags: [],
-        firstTagValue: '',
-        secondTagValue: [],
-        tagsValue: []
+        level: "",
+        remark: "",
+        articleSection: "",
+        textVal: 0,
+        mdText: "# Hello World",
+        tags: [],
+        tagValue: '',
+        tagsValue: [],
+        articleTypeValue: '',
+        articleTypeArr: [{id: 1, name: '原创'}, {id: 2, name: '整理'}, {id: 3, name: '转载'}],
+        levelArr: [{id: 1, name: '等级一'},
+          {id: 2, name: '等级二'},
+          {id: 3, name: '等级三'},
+          {id: 4, name: '等级四'},
+          {id: 5, name: '等级五'}]
       };
     },
     mounted() {
@@ -55,7 +87,6 @@
     watch: {
       firstTagValue: function (newVal, oldVal) {
         //console.log("当前应取到的值：" + newVal, "这是之前的值：" + oldVal);
-        this.getSecondTags(newVal);
       }
     },
     methods: {
@@ -63,41 +94,69 @@
         this.http.post(this.ports.tag.cloud, {}, res => {
           if (res.success) {
             let datas = res.data.results;
-            this.firstTags = datas;
+            this.tags = datas;
           } else {
-            this.firstTags = [];
+            this.tags = [];
           }
         })
-      },
-      getSecondTags(value) {
-        console.log('secondTags:' + value);
-        if (value == null || value == 0) {
-          return;
+        let code = this.getUrlKey("id");
+        if (code) {
+          this.http.post(this.ports.articleBack.get, {
+            code: this.getUrlKey("id")
+          }, res => {
+            if (res.success) {
+              let datas = res.data.results;
+              if (datas != null) {
+                this.title = datas.title;
+                this.secondTitle = datas.secondTitle;
+                this.logo = datas.logo;
+                this.level = datas.level;
+                this.remark = datas.remark;
+                this.articleSection = datas.articleSection;
+                this.mdText = datas.articleMarkdown;
+                this.articleTypeValue = datas.articleType;
+                this.tagValue = datas.tag;
+                this.tagsValue = datas.tags;
+                this.descInput();
+              }
+            }
+          })
         }
-        this.http.post(this.ports.tag.secondTags, {
-          parentCode: value
-        }, res => {
-          if (res.success) {
-            let datas = res.data.results;
-            this.secondTags = datas;
-          } else {
-            this.secondTags = [];
-          }
-        })
       },
       save(value, render) {
-        console.log("save value:");
-        console.log(value);
-        console.log("save render:");
-        console.log(render);
-        console.log(this.title);
-        console.log(this.logo);
-        console.log(this.firstTagValue);
-        console.log(this.secondTagValue);
+        this.http.post(this.ports.articleBack.save, {
+          code: this.getUrlKey("id"),
+          title: this.title,
+          secondTitle: this.secondTitle,
+          logo: this.logo,
+          tag: this.tagValue,
+          tags: this.tagsValue,
+          articleType: this.articleTypeValue,
+          articleSection: this.articleSection,
+          remark: this.remark,
+          level: this.level,
+          articleMarkdown: value,
+          articleHtml: render,
+          word: this.word
+        }, res => {
+          if (res.success) {
+            //let datas = res.data.results;
+            //console.log(datas);
+          } else {
+            console.log(res.message);
+          }
+        })
       },
       changeMdEditor(value, render) {
         //console.log("change value:" + value);
         //console.log("change render:" + render);
+      },
+      descInput() {
+        this.textVal = this.remark.length;
+      },
+      getUrlKey: function (name) {
+        return decodeURIComponent((new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)').exec(location.href)
+          || [, ""])[1].replace(/\+/g, '%20')) || null;
       }
     }
   }
@@ -128,5 +187,10 @@
     min-height: 10px;
     height: 5%;
     border: 1px #F4FFFC solid;
+  }
+
+  .remark {
+    width: 500px;
+    height: 100px;
   }
 </style>
