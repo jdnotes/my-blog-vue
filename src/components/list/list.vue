@@ -61,7 +61,7 @@
         pageRows: 10,
         total: 0,
         noDataShow: false,
-        noDataText: '暂无内容,看看别的模块吧',
+        noDataText: '暂无内容,看看最新推荐吧',
         pageShow: false,
         keywords: '',
         tags: '',
