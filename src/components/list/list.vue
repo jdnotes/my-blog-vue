@@ -12,14 +12,20 @@
       <main class="r_box">
         <div v-for="item in articles">
           <li>
-            <i v-if="item.logo != ''"><a href="javascript: void(0)" @click="goInfo(item)">
-              <img :src="item.logo"></a></i>
+            <i v-if="item.logo != ''">
+              <a href="javascript: void(0)" @click="goInfo(item)">
+                <img :src="item.logo">
+              </a>
+            </i>
             <h3><a href="javascript: void(0)" @click="goInfo(item)">{{item.title}}</a></h3>
             <p>{{item.articleSection}}</p>
           </li>
         </div>
+        <div>
+          <li v-if="noDataShow">{{noDataText}}</li>
+        </div>
         <page :totalRecords="total" :currentPage='currentPage' @pageChange="pageChange"
-              v-show="pageShow"></page>
+              v-if="pageShow"></page>
       </main>
     </article>
     <foot></foot>
@@ -38,7 +44,7 @@
   import Page from "../section/page";
 
   export default {
-    name: 'myHome',
+    name: 'myList',
     components: {
       Page,
       Tags,
@@ -54,6 +60,8 @@
         currentPage: 1,
         pageRows: 10,
         total: 0,
+        noDataShow: false,
+        noDataText: '暂无内容,看看别的模块吧',
         pageShow: false,
         keywords: '',
         tags: '',
@@ -65,28 +73,40 @@
     },
     methods: {
       getInitList() {
-        let param= this.$route.params;
+        let param = this.$route.params;
         this.keywords = param.keywords;
         this.tags = this.$route.params.tags;
         this.http.post(this.ports.article.search, {
-          currentPage: 1,
+          currentPage: this.currentPage,
           tags: this.tags,
           keywords: this.keywords
         }, res => {
           if (res.success) {
+            //console.log(JSON.stringify(res.data.results));
             let datas = res.data.results;
             this.articles = datas.records;
             this.currentPage = datas.currentPage;
             this.total = datas.totalRecords;
-            if (this.total > 0) {
+            if (this.total > 10) {
+              this.noDataShow = false;
               this.pageShow = true;
+            } else if (this.total > 0) {
+              this.noDataShow = false;
+            } else {
+              this.noDataShow = true;
             }
           } else {
+            this.noDataShow = true;
             this.articles = [];
           }
         })
       },
       goInfo(obj) {
+        if (obj.id == null) {
+          console.log('goInfo id :' + id);
+          return;
+        }
+        //console.log('goInfo method param:' + JSON.stringify(obj));
         let id = obj.id;
         this.$router.push({path: '/info/' + id});
       },
@@ -101,16 +121,23 @@
             this.articles = datas.records;
             this.currentPage = datas.currentPage;
             this.total = datas.totalRecords;
-            if (this.total > 0) {
+            this.noDataShow = false;
+            if (this.total > 10) {
+              this.noDataShow = false;
               this.pageShow = true;
+            } else if (this.total > 0) {
+              this.noDataShow = false;
+            } else {
+              this.noDataShow = true;
             }
           } else {
+            this.noDataShow = true;
             this.articles = [];
           }
         })
       },
       search(keyword) {
-        console.log("list search:" + keyword);
+        //console.log("list search:" + keyword);
         this.$router.push({name: 'home', params: {tags: '', currentPage: 1, keywords: keyword}})
       }
     }
