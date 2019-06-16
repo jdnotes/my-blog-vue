@@ -29,6 +29,7 @@
       </main>
     </article>
     <foot></foot>
+    <top></top>
   </div>
 </template>
 
@@ -42,10 +43,12 @@
   import Foot from "../section/foot";
   import Tags from "../section/tags";
   import Page from "../section/page";
+  import Top from "../section/top";
 
   export default {
     name: 'myHome',
     components: {
+      Top,
       Page,
       Tags,
       Foot,
