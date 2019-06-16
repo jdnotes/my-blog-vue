@@ -120,9 +120,9 @@
           }
         })
       },
-      search(keyword) {
-        console.log("info search:" + keyword);
-        this.$router.push({path: '/'});
+      search(curPage, tags, keyword) {
+        //console.log("info search:" + keyword);
+        this.$router.push({name: 'home', params: {currentPage: curPage, tags: tags, keywords: keyword}});
       }
     }
   }

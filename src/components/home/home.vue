@@ -105,7 +105,9 @@
               this.pageShow = true;
             } else if (this.total > 0) {
               this.noDataShow = false;
+              this.pageShow = false;
             } else {
+              this.pageShow = false;
               this.noDataShow = true;
             }
           } else {
