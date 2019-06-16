@@ -44,12 +44,8 @@
           return;
         } else {
           //子组件调用父组件方法
-          this.$parent.search(keyword);
+          this.$parent.search(1, '', keyword);
         }
-      },
-      back(obj) {
-        console.log('back nav method:' + JSON.stringify(obj));
-        this.$router.push({path: '/info/1003'});
       }
     }
   }

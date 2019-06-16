@@ -1,5 +1,4 @@
 import Home from './components/home/home'
-import List from './components/list/list'
 import Info from './components/info/info'
 import Md from './components/edit/md'
 import About from './components/about/about'
@@ -15,11 +14,6 @@ const routers = [
     path: '/home',
     name: 'home',
     component: Home
-  },
-  {
-    path: '/list',
-    name: 'list',
-    component: List
   },
   {
     path: '/info/:id',

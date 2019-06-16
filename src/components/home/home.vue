@@ -77,47 +77,22 @@
     methods: {
       getInitList() {
         let param = this.$route.params;
-        this.keywords = param.keywords;
-        this.tags = this.$route.params.tags;
-        this.http.post(this.ports.article.search, {
-          currentPage: this.currentPage,
-          tags: this.tags,
-          keywords: this.keywords
-        }, res => {
-          if (res.success) {
-            //console.log(JSON.stringify(res.data.results));
-            let datas = res.data.results;
-            this.articles = datas.records;
-            this.currentPage = datas.currentPage;
-            this.total = datas.totalRecords;
-            if (this.total > 10) {
-              this.noDataShow = false;
-              this.pageShow = true;
-            } else if (this.total > 0) {
-              this.noDataShow = false;
-            } else {
-              this.noDataShow = true;
-            }
-          } else {
-            this.noDataShow = true;
-            this.articles = [];
-          }
-        })
+        let tags = param.tags;
+        let keywords = param.keywords;
+        this.pageChange(1, tags, keywords);
       },
-      goInfo(obj) {
-        if (obj.id == null) {
-          console.log('goInfo id :' + id);
+      goInfo(item) {
+        if (item.id == null) {
           return;
         }
-        //console.log('goInfo method param:' + JSON.stringify(obj));
-        let id = obj.id;
+        let id = item.id;
         this.$router.push({path: '/info/' + id});
       },
-      pageChange(curPage) {
+      pageChange(curPage, tags, keyword) {
         this.http.post(this.ports.article.search, {
           currentPage: curPage,
-          tags: this.tags,
-          keywords: this.keywords
+          tags: tags,
+          keywords: keyword
         }, res => {
           if (res.success) {
             let datas = res.data.results;
@@ -139,9 +114,8 @@
           }
         })
       },
-      search(keyword) {
-        //console.log("home search:" + keyword);
-        this.$router.push({name: 'list', params: {tags: '', currentPage: 1, keywords: keyword}})
+      search(curPage, tags, keyword) {
+        this.pageChange(curPage, tags, keyword);
       }
     }
   }

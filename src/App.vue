@@ -20,7 +20,7 @@
       reload() {
         this.isRouterAlive = false;
         this.$nextTick(function () {
-          this.isRouterAlive = true
+          this.isRouterAlive = true;
         });
       },
     }
