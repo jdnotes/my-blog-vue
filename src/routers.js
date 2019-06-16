@@ -1,7 +1,10 @@
-import Home from './components/home/home.vue'
-import List from './components/list/list.vue'
-import Info from './components/info/info.vue'
-import Md from './components/edit/md.vue'
+import Home from './components/home/home'
+import List from './components/list/list'
+import Info from './components/info/info'
+import Md from './components/edit/md'
+import About from './components/about/about'
+import Message from './components/message/message'
+import Life from './components/life/life'
 
 const routers = [
   {
@@ -22,6 +25,21 @@ const routers = [
     path: '/info/:id',
     name: 'info',
     component: Info
+  },
+  {
+    path: '/about',
+    name: 'about',
+    component: About
+  },
+  {
+    path: '/message',
+    name: 'message',
+    component: Message
+  },
+  {
+    path: '/life',
+    name: 'life',
+    component: Life
   },
   {
     path: '/md/editor',
