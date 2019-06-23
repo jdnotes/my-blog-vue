@@ -10,7 +10,9 @@ const TIME_OUT_MS = 60 * 1000
   // 线上接口地址 http://www.jdbiji.com
   : 'http://127.0.0.1';*/
 
-const REQUEST_URL ="http://www.jdbiji.com";
+const REQUEST_URL ="http://192.168.1.200";
+
+//const REQUEST_URL ="http://www.jdbiji.com";
 
 /*
  * @param response 返回数据列表

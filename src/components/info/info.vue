@@ -114,9 +114,11 @@
         }, res => {
           if (res.success) {
             let datas = res.data.results;
-            this.details = datas;
+            if (datas != null) {
+              this.details = datas;
+            }
           } else {
-            this.articles = [];
+            // todo
           }
         })
       },

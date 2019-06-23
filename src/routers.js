@@ -4,6 +4,7 @@ import Md from './components/edit/md'
 import About from './components/about/about'
 import Message from './components/message/message'
 import Life from './components/life/life'
+import NotFound from './components/error/404'
 
 const routers = [
   {
@@ -39,6 +40,11 @@ const routers = [
     path: '/md/editor',
     name: 'md',
     component: Md
+  },
+  {
+    path: '*',
+    name: '404',
+    component: NotFound
   }
 ]
 export default routers

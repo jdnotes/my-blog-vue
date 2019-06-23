@@ -3,23 +3,7 @@
     <div class="cloud">
       <h2>标签云</h2>
       <ul>
-        <a href="javascript: void(0)" @click="goHome('kgiimupo8c')">JAVA</a>
-        <a href="javascript: void(0)" @click="goHome('zmskn8mhgy')">Spring</a>
-        <a href="javascript: void(0)" @click="goHome('ycpeq3dhnt')">MyBatis</a>
-        <a href="javascript: void(0)" @click="goHome('kgvxds693y')">MYSQL</a>
-        <a href="javascript: void(0)" @click="goHome('vzkj1eaqvq')">Redis</a>
-        <a href="javascript: void(0)" @click="goHome('ggg2hiyuel')">RabbitMQ</a>
-        <a href="javascript: void(0)" @click="goHome('b74a2zmqci')">JVM</a>
-        <a href="javascript: void(0)" @click="goHome('pe9t7or91t')">多线程</a>
-        <a href="javascript: void(0)" @click="goHome('bcm8i92uf2')">ES</a>
-        <a href="javascript: void(0)" @click="goHome('8gej5sog8p')">Nginx</a>
-        <a href="javascript: void(0)" @click="goHome('st66vzoqga')">Docker</a>
-        <a href="javascript: void(0)" @click="goHome('us8qajui6x')">ZooKeeper</a>
-        <a href="javascript: void(0)" @click="goHome('2qz2e5t5ye')">Dubbo</a>
-        <a href="javascript: void(0)" @click="goHome('r5doz8h7lg')">IDEA</a>
-        <a href="javascript: void(0)" @click="goHome('wnntvov3xe')">git</a>
-        <a href="javascript: void(0)" @click="goHome('nlllkzg421')">实战</a>
-        <a href="javascript: void(0)" @click="goHome('uytuec863g')">推荐</a>
+        <a href="javascript: void(0)" v-for="item in tags" @click="goHome(item.code)">{{item.tagName}}</a>
       </ul>
     </div>
   </div>
@@ -32,11 +16,7 @@
     data() {
       return {
         title: '标签云',
-        tags: [
-          {'id': 1001, 'name': 'JavaSE', 'num': '16'},
-          {'id': 1002, 'name': 'Spring', 'num': '21'},
-          {'id': 1003, 'name': 'JVM', 'num': '34'}
-        ]
+        tags: []
       }
     },
     mounted() {
@@ -45,6 +25,14 @@
     methods: {
       getInitList() {
         //console.log('tags init method');
+        this.http.post(this.ports.tag.cloud, {}, res => {
+          if (res.success) {
+            let datas = res.data.results;
+            this.tags = datas;
+          } else {
+            this.tags = [];
+          }
+        })
       },
       goHome(code) {
         let tags = code;
